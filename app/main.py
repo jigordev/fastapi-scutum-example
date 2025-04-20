@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from api.v1.endpoints import user
-from api.v1.endpoints import post
+from app.api.v1.endpoints import user
+from app.api.v1.endpoints import post
 
 app = FastAPI()
 
