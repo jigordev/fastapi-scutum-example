@@ -1,6 +1,6 @@
-from app.core.security import gate
+from app.core.security import auth_config
 
-@gate.policy("users")
+@auth_config.gate.policy("users")
 class UserPolicy:
     def view(self, user):
         return user.role == "admin"

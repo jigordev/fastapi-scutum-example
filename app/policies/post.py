@@ -1,6 +1,6 @@
-from app.core.security import gate
+from app.core.security import auth_config
 
-@gate.policy("posts")
+@auth_config.gate.policy("posts")
 class PostPolicy:
     def view(self, user, post):
         return True
