@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from scutum.ext.fastapi import check_permission
 from fastapi import APIRouter, Depends
 from app.schemas.post import Post, PostCreate
 from app.services.post import get_post, create_post
+from app.core.security import gate
 from app.core.db import get_db
 
 router = APIRouter()
@@ -11,7 +11,7 @@ router = APIRouter()
 def show(
     post_id,
     db: Session = Depends(get_db),
-    _: bool = Depends(check_permission("posts:view"))
+    _ = Depends(gate.authorized_user("posts:view"))
 ):
     post = get_post(db=db, post_id=post_id)
     return post
@@ -20,6 +20,6 @@ def show(
 def create(
     post: PostCreate,
     db: Session = Depends(get_db),
-    _: bool = Depends(check_permission("posts:create"))
+    _ = Depends(gate.authorized_user("posts:create"))
 ):
     return create_post(db=db, post=post)

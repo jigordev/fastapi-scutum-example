@@ -1,7 +1,6 @@
-from app.core.security import auth_config
+from scutum import Policy
 
-@auth_config.gate.policy("posts")
-class PostPolicy:
+class PostPolicy(Policy):
     def view(self, user, post):
         return True
     
