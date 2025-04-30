@@ -1,7 +1,6 @@
-from app.core.security import auth_config
+from scutum import Policy
 
-@auth_config.gate.policy("users")
-class UserPolicy:
+class UserPolicy(Policy):
     def view(self, user):
         return user.role == "admin"
     
