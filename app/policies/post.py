@@ -1,8 +1,8 @@
-from scutum import Policy
+from scutum import AsyncPolicy
 
-class PostPolicy(Policy):
-    def view(self, user, post):
+class PostPolicy(AsyncPolicy):
+    async def view(self, user, post):
         return True
     
-    def create(self, user, data):
+    async def create(self, user, data):
         return True

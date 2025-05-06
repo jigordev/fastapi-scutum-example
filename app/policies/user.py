@@ -1,8 +1,8 @@
-from scutum import Policy
+from scutum import AsyncPolicy
 
-class UserPolicy(Policy):
-    def view(self, user):
+class UserPolicy(AsyncPolicy):
+    async def view(self, user):
         return user.role == "admin"
     
-    def create(self, user, data):
+    async def create(self, user, data):
         return user.role == "admin"
