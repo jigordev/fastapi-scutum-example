@@ -8,18 +8,18 @@ from app.core.db import get_db
 router = APIRouter()
 
 @router.get("/{post_id}", response_model=Post)
-def show(
+async def show(
     post_id,
     db: Session = Depends(get_db),
     _ = Depends(gate.authorized_user("posts:view"))
 ):
-    post = get_post(db=db, post_id=post_id)
+    post = await get_post(db=db, post_id=post_id)
     return post
 
 @router.post("/", response_model=Post)
-def create(
+async def create(
     post: PostCreate,
     db: Session = Depends(get_db),
     _ = Depends(gate.authorized_user("posts:create"))
 ):
-    return create_post(db=db, post=post)
+    return await create_post(db=db, post=post)
