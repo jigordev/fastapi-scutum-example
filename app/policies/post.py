@@ -1,8 +1,10 @@
-from scutum import Policy
+from scutum import AsyncPolicy
+from app.core.security import gate
 
-class PostPolicy(Policy):
-    def view(self, user, post):
+@gate.policy("posts")
+class PostPolicy(AsyncPolicy):
+    async def view(self, user, post):
         return True
     
-    def create(self, user, data):
+    async def create(self, user, data):
         return True

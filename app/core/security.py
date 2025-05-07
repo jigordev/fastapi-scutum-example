@@ -1,4 +1,5 @@
 from jwt import decode, InvalidTokenError
+from scutum.ext.fastapi import create_api_gate
 from fastapi import Security, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from app.core.config import settings
@@ -23,3 +24,5 @@ async def get_current_user(
         return user
     except InvalidTokenError:
         raise HTTPException(status_code=401, detail="Invalid token")
+    
+gate = create_api_gate(get_current_user)
