@@ -2,7 +2,6 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     app_name: str = "FastAPI Scutum Example"
-    database_url: str
     secret_key: str
     jwt_algorithm: str
 

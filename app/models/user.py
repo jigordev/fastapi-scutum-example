@@ -1,10 +1,9 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.core.db import Base
+from dataclasses import dataclass
 
-class User(Base):
-    __tablename__ = "users"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    email: Mapped[str] = mapped_column(unique=True)
-    password: Mapped[str]
-    posts: Mapped[list["Post"]] = relationship(back_populates="author")
+@dataclass
+class User:
+    id: int
+    email: str
+    password: str
+    posts: list["Post"]
+    role: str = "admin"
